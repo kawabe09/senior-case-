@@ -4,9 +4,6 @@ namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
-use App\Models\Timestamp;
-/*use App\Models\Break_time;*/
-use Carbon\Carbon;
 
 class Kernel extends ConsoleKernel
 {
@@ -16,15 +13,9 @@ class Kernel extends ConsoleKernel
      * @param  \Illuminate\Console\Scheduling\Schedule  $schedule
      * @return void
      */
-    protected $commands = [
-        Commands\WriteLog::Class,
-        '2fa' => \PragmaRX\Google2FALaravel\Middleware::class,
-    ];
-
     protected function schedule(Schedule $schedule)
     {
         // $schedule->command('inspire')->hourly();
-        $schedule->command('work_end')->dailyAt('15:50');
     }
 
     /**

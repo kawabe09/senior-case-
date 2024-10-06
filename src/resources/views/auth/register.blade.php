@@ -1,77 +1,48 @@
 @extends('layouts.app')
 
+@section('css')
+<link rel="stylesheet" href="{{ asset('css/auth/register.css')}}">
+@endsection
+
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
-
-                <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
-                        @csrf
-
-                        <div class="row mb-3">
-                            <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Name') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
-
-                                @error('name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
-
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-end">{{ __('Confirm Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
-                            </div>
-                        </div>
-
-                        <div class="row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Register') }}
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
+<div class="register-form">
+    <h2 class="register-form__heading content__heading">Register</h2>
+    <div class="register-form__inner">
+        <form class="register-form__form" action="/register" method="post">
+        @csrf
+        <div class="register-form__group">
+            <label class="register-form__label" for="name">お名前</label>
+            <input class="register-form__input" type="text" name="name" id="name" placeholder="例：山田 太郎">
+            <p class="register-form__error-message">
+                @error('name')
+                {{ $message }}
+                @enderror
+            </p>
         </div>
+        <div class="register-form__group">
+            <label class="register-form__label" for="email">メールアドレス</label>
+            <input class="register-form__input" type="mail" name="email" id="email" placeholder="例：test@example.com">
+            <p class="register-form__error-message">
+                @error('email')
+                {{ $message }}
+                @enderror
+            </p>
+        </div>
+        <div class="register-form__group">
+            <label class="register-form__label" for="password">パスワード</label>
+            <input class="register-form__input" type="password" name="password" id="password" placeholder="例：coachtech1106">
+            <p class="register-form__error-message">
+                @error('password')
+                {{ $message }}
+                @enderror
+            </p>
+        </div>
+        <div class="register-form__group">
+                <label class="register-form__label" for="password_confirmation">パスワード確認</label>
+                <input class="register-form__input" type="password_confirmation" name="password_confirmation" id="password_confirmation" placeholder="例：coachtech1106">
+        </div>
+        <input class="register-form__btn btn" type="submit" value="登録">
+        </form>
     </div>
 </div>
-@endsection
+@endsection('content')

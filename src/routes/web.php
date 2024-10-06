@@ -1,8 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\EmployeeController;
-
+use App\Http\Controllers\ShopController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,11 +13,8 @@ use App\Http\Controllers\EmployeeController;
 |
 */
 
-Route::get('/', [EmployeeController::class,'index']);
+Route::get('/thanks', [ShopController::class, 'thanks']);
 Route::middleware('auth')->group(function () {
-    Route::get('/start', [EmployeeController::class, 'start']);
-    Route::get('/end', [EmployeeController::class, 'end']);
-    Route::get('/rest', [EmployeeController::class, 'rest']);
-    Route::get('/rest_end', [EmployeeController::class, 'rest_end']);
-    Route::get('/data', [EmployeeController::class, 'data']);
+    Route::get('/', [ShopController::class, 'index']);
+    Route::get('/shop/detail', 'ShopController@detail')->name('shop.detail');
 });

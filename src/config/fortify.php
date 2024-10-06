@@ -143,9 +143,6 @@ return [
     | these features or you can even remove all of these if you need to.
     |
     */
-    'redirects' => [
-        'logout' => config('app.url') . '/login'
-    ],
 
     'features' => [
         Features::registration(),
